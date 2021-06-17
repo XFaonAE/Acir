@@ -1,0 +1,15 @@
+{
+  "name": "acir",
+  "version": "1.0.0",
+  "description": "Simple language compiler",
+  "main": "src/Acir.ts",
+  "scripts": {
+    "test": "ts-node src/Acir.ts"
+  },
+  "author": "XFaon <xfaonae@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.3"
+  }
+}

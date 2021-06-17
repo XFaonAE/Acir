@@ -4,7 +4,8 @@ export class Lexer {
     constructor() {
         this.source = {
             lines: null,
-            row: null
+            row: null,
+            rowSplit: null
         }
     }
 
@@ -17,6 +18,12 @@ export class Lexer {
             lineIndex++;
         }
 
-        console.log(this.source.lines);
+        lineIndex = 0;
+        var row = [];
+
+        while(lineIndex < this.source.lines.length) {
+            row = this.
+            lineIndex++;
+        }
     }
 }

@@ -4,7 +4,7 @@
   "description": "Simple language compiler",
   "main": "src/Acir.ts",
   "scripts": {
-    "test": "ts-node src/Acir.ts"
+    "test": "ts-node src/AcirTest.ts"
   },
   "author": "XFaon <xfaonae@gmail.com>",
   "license": "MIT",

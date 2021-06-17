@@ -4,12 +4,12 @@ export class Lexer {
     constructor() {
         this.source = {
             lines: null,
-            row: null,
+            row: [],
             rowSplit: null
         }
     }
 
-    buildFullTree(sourceCode: string) {
+    buildFullRow(sourceCode: string) {
         this.source.lines = sourceCode.split(/\r?\n/);
 
         var lineIndex = 0;
@@ -19,11 +19,11 @@ export class Lexer {
         }
 
         lineIndex = 0;
-        var row = [];
-
         while(lineIndex < this.source.lines.length) {
-            row = this.
+            this.source.row = this.source.row.concat(this.source.lines[lineIndex]);
             lineIndex++;
         }
+
+        return this.source.row;
     }
 }

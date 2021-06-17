@@ -1,14 +1,17 @@
 const compilerConfig = require("./compiler.config");
+const { Assembler } = require("./Assembler");
 
 export class Acir {
     loaderRunning: boolean = false;
     loaderStateImage: string;
     loaderStateNumber: number;
+    assembler: typeof Assembler;
 
     constructor() {
         this.loader(true);
         this.loaderProcess();
         this.loaderStateNumber = 0;
+        this.assembler = new Assembler();
         this.loaderStateImage = "";
     }
 
@@ -18,22 +21,10 @@ export class Acir {
 
     loaderNextState() {
         var states = [
-            "[ ============= ] |       1        ",
-            "[ #============ ] /       2        ",
-            "[ ==#========== ] -       3        ",
-            "[ ====#======== ] \\      4        ",
-            "[ ======#====== ] |       5        ",
-            "[ ========#==== ] /       6        ",
-            "[ ==========#== ] -       7        ",
-            "[ ============# ] \\      8        ",
-            "[ ============= ] |       10        ",
-            "[ ============# ] /       11        ",
-            "[ ==========#== ] -       12        ",
-            "[ ========#==== ] \\      13        ",
-            "[ ======#====== ] |       14        ",
-            "[ ====#======== ] /       15        ", 
-            "[ ==#========== ] -       16        ",
-            "[ #============ ] \\      17        "
+            "[ | ]",
+            "[ / ]",
+            "[ - ]",
+            "[ \\ ]",
         ];
 
         if (this.loaderStateNumber > states.length - 1) {
@@ -41,15 +32,16 @@ export class Acir {
         }
 
         this.loaderStateNumber++;
-
         this.loaderStateImage = states[this.loaderStateNumber - 1];
     }
 
     loaderProcess() {
         setInterval(() => {
-            this.loaderNextState();
-            process.stdout.write(this.loaderStateImage + "\r");
-        }, 50);
+            if (this.loaderRunning == true) {
+                this.loaderNextState();
+                process.stdout.write(this.loaderStateImage + "\r");
+            }
+        }, 100);
     }
 
     printError(message: string) {
@@ -57,9 +49,6 @@ export class Acir {
     }
 
     run() {
-
+        this.assembler.assemble();
     }
 }
-
-const acir = new Acir();
-acir.run();
